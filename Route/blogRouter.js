@@ -1,10 +1,10 @@
 const express = require('express');
-
 const router = express.Router();
-
+const {check, validationResult} = require('express-validator');
 const blogModel = require('../Models/blogSchema');
-
-router.get('/', async (req, res) => {
+const authMiddleware = require('../Middleware/authMiddleware');
+//!---------------------------------------------------Get Blog--------------------------------
+router.get('/', authMiddleware, async (req, res) => {
 
     try {
         const blog = await blogModel.find()
@@ -14,9 +14,9 @@ router.get('/', async (req, res) => {
     }
  });
 
-
-router.post('/', async (req,res) => {
-    const blogData = req.body
+//!--------------------------------------------------POST Blog----------------------------------------
+router.post('/', authMiddleware, async (req,res) => {
+    const blogData = req.body 
 
     try {
         const blog = await blogModel.create(blogData)
@@ -27,9 +27,9 @@ router.post('/', async (req,res) => {
     }
 });
 
-
-router.get('/:id', async (req,res) => { 
-    const id = req.params.id
+//!-------------------------------------------------Get Blog by ID--------------------------------------
+router.get('/:id', authMiddleware, async (req,res) => { 
+    const id = req.params.id  
     try {
         const blog = await blogModel.findById(id)
         res.status(200).json(blog)
@@ -39,12 +39,12 @@ router.get('/:id', async (req,res) => {
     }
 });
 
-
-router.put('/:id', async (req,res) => {
+//!-------------------------------------------Update Blog by ID----------------------------------
+router.put('/:id',authMiddleware, async (req,res) => {
     const id = req.params.id
     const newBlogData = req.body
     try {
-        const blog = await blogModel.findByIdAndUpdate(id, newBlogData)  
+        const blog = await blogModel.findByIdAndUpdate(id, newBlogData)  //! Going to find ID and update
         res.status(202).json(blog)
     } catch(error){
         console.log(error);
@@ -52,8 +52,8 @@ router.put('/:id', async (req,res) => {
     }
 });
 
-
-router.delete('/:id', async (req,res) => {
+//!------------------------------------------------Delete Blog----------------------------------------------
+router.delete('/:id', authMiddleware, async (req,res) => {
     const id = req.params.id
 
     try {
@@ -64,4 +64,5 @@ router.delete('/:id', async (req,res) => {
         res.status(400).json({msg:'Unable to delete'})
     }
 });
+
 module.exports = router
