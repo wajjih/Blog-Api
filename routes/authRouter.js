@@ -2,7 +2,7 @@ const express = require('express');
 const bcrypt = require('bcrypt')
 const router = express.Router();
 const {check, validationResult} = require('express-validator');
-const userModel = require('../Models/userSchema');
+const userModel = require('../models/userSchema');
 
 
 router.post('/', [

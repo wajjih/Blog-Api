@@ -11,14 +11,15 @@ const PORT = process.env.PORT || 3000;
 const mongoConfig = require('./config/mongoConfig');
 
 
-const authRouter = require('./Route/authRouter')
-const userRouter = require('./Route/userRouter');
-const blogRouter = require('./Route/blogRouter');
+const authRouter = require('./routes/authRouter')
+const userRouter = require('./routes/userRouter');
+const blogRouter = require('./routes/blogRouter');
 
 const app = express();
 app.use(express.json());
 app.use(helmet());
 app.use(morgan('dev'));
+
 
 
 app.use('/User', userRouter);

@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const {check, validationResult} = require('express-validator');
-const blogModel = require('../Models/blogSchema');
-const authMiddleware = require('../Middleware/authMiddleware');
+const blogModel = require('../models/blogSchema');
+const authMiddleware = require('../middleware/authMiddleware');
 
 router.get('/', authMiddleware, async (req, res) => {
 

@@ -5,7 +5,7 @@ const {check, validationResult} = require('express-validator');
 
 const router = express.Router();
 
-const userModel = require('../Models/userSchema');
+const userModel = require('../models/userSchema');
 
 
 router.post('/', [
