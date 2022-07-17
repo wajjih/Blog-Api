@@ -1,5 +1,7 @@
 # Blogs API Project
 
+https://waj-blog-api.herokuapp.com/
+
 ## Features
 * Blogs are Full CRUD entailing that the blogs can be created, read, updated and deleted
 * Users can be registered, viewed, updated and deleted
