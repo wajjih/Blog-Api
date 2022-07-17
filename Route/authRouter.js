@@ -4,7 +4,7 @@ const router = express.Router();
 const {check, validationResult} = require('express-validator');
 const userModel = require('../Models/userSchema');
 
-//!-------------------------------------------POST---------------------------------
+
 router.post('/', [
     check("email", "Please use valid email").isEmail(),
     check("password", 'Please enter a password').notEmpty(),

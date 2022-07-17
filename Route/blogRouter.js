@@ -3,7 +3,7 @@ const router = express.Router();
 const {check, validationResult} = require('express-validator');
 const blogModel = require('../Models/blogSchema');
 const authMiddleware = require('../Middleware/authMiddleware');
-//!---------------------------------------------------Get Blog--------------------------------
+
 router.get('/', authMiddleware, async (req, res) => {
 
     try {
@@ -14,7 +14,7 @@ router.get('/', authMiddleware, async (req, res) => {
     }
  });
 
-//!--------------------------------------------------POST Blog----------------------------------------
+
 router.post('/', authMiddleware, async (req,res) => {
     const blogData = req.body 
 
@@ -27,7 +27,7 @@ router.post('/', authMiddleware, async (req,res) => {
     }
 });
 
-//!-------------------------------------------------Get Blog by ID--------------------------------------
+
 router.get('/:id', authMiddleware, async (req,res) => { 
     const id = req.params.id  
     try {
@@ -39,12 +39,12 @@ router.get('/:id', authMiddleware, async (req,res) => {
     }
 });
 
-//!-------------------------------------------Update Blog by ID----------------------------------
+
 router.put('/:id',authMiddleware, async (req,res) => {
     const id = req.params.id
     const newBlogData = req.body
     try {
-        const blog = await blogModel.findByIdAndUpdate(id, newBlogData)  //! Going to find ID and update
+        const blog = await blogModel.findByIdAndUpdate(id, newBlogData)  
         res.status(202).json(blog)
     } catch(error){
         console.log(error);
@@ -52,7 +52,7 @@ router.put('/:id',authMiddleware, async (req,res) => {
     }
 });
 
-//!------------------------------------------------Delete Blog----------------------------------------------
+
 router.delete('/:id', authMiddleware, async (req,res) => {
     const id = req.params.id
 

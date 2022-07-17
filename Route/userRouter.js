@@ -7,7 +7,7 @@ const router = express.Router();
 
 const userModel = require('../Models/userSchema');
 
-//!------------------------------------------POST User-----------------------------------------
+
 router.post('/', [
     check('username', "Username is required!").notEmpty(),
     check("email", "Please use valid email").isEmail(),
@@ -30,7 +30,7 @@ router.post('/', [
             return res.json({msg: 'User already exist'})
          }
 
-        //! salt rounds
+        
         const saltRounds = await bcrypt.genSalt(10)
         const hashedPassword = await bcrypt.hash(userData.password, saltRounds)
         console.log(hashedPassword);
